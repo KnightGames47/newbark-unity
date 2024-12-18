@@ -21,31 +21,13 @@ namespace NewBark
         {
             Vector3 direction = _playerController.GetFaceDirection();
             RaycastHit2D hit = _playerController.CheckHit(direction, interactableLayer, raycastDistance);
-            GameObject obj = CheckInteractarableHit(hit);
 
             var pos = transform.position;
-
-            if (!obj)
-            {
-                Debug.DrawRay(pos, direction, Color.red);
-                Debug.DrawRay(pos, hit.point, Color.blue);
-                return;
-            }
 
             Debug.DrawRay(pos, direction, Color.green);
             Debug.DrawRay(pos, hit.point, Color.blue);
 
-            obj.SendMessage("OnPlayerInteract", GameButton.A, SendMessageOptions.DontRequireReceiver);
-        }
-
-        public GameObject CheckInteractarableHit(RaycastHit2D hit)
-        {
-            if (!hit || !hit.collider || !hit.collider.gameObject)
-            {
-                return null;
-            }
-
-            return hit.collider.gameObject;
+            hit.collider.SendMessage("OnInteract", GameButton.A, SendMessageOptions.DontRequireReceiver);
         }
     }
 }
