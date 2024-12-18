@@ -97865,7 +97865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da143d3099940329ee379ca6a29a920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoLoad: 1
+  autoLoad: 0
   autoSave: 1
   onLoadState:
     m_PersistentCalls:

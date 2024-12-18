@@ -37,11 +37,8 @@ namespace NewBark.State
 
         public static void Save(GameData data)
         {
-            var stream = new FileStream(GetSaveFileName(), FileMode.Create);
-
-            var formatter = new BinaryFormatter();
-            formatter.Serialize(stream, data);
-            stream.Close();
+            string jsonFile = JsonUtility.ToJson(data);
+            File.WriteAllText(GetSaveFileName(), jsonFile);
 
             Debug.Log("Game SAVED. " + GetPlayTime(data));
         }
